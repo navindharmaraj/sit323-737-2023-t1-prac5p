@@ -21,7 +21,7 @@ app.use(passport.session());
 app.use(bodyParser.json())
 //Services
 var calculation = require("./services/calculation");
-
+var health = require("./services/health");
 
 router.get("/", function (req, res) {
     res.sendFile(path + "index.html");
@@ -36,7 +36,7 @@ app.post("/calc/sub",passport.authenticate('local'),calculation.subtraction )//F
 app.post("/calc/mul",passport.authenticate('local'),calculation.multiplication )//Function to mul 2 numbers
 app.post("/calc/div",passport.authenticate('local'),calculation.division )//Function to div 2 numbers
 app.post("/addition",passport.authenticate('local'),calculation.n_addition )//Function to add n numbers
-
+app.get("/health",health.health )//Function to check health
 
 app.listen(3000, function () {
     console.log("Live at Port 3000");
